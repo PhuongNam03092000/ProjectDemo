@@ -1,0 +1,34 @@
+﻿<div class="row">
+    <div class="col-sm-9">
+        <form id="myForm" class="form" enctype='multipart/form-data'>
+            <div ng-if="!isAddButton" class="form-group">
+                <label for="name">Id</label>
+                <input type="text" name="name" value="" class="form-control" ng-model="product.id" readonly />
+            </div>
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <input type="text" name="name" value="" class="form-control" ng-model="product.name" />
+                <span id="label-error-name"></span>
+            </div>
+            <div class="form-group">
+                <label for="description" class="">Description</label>
+                <input type="text" name="description" value="" class="form-control" ng-model="product.description" />
+                <span id="label-error-description"></span>
+            </div>
+            <div class="form-group">
+                <label for="image">Product Image</label>
+                <input type="file" accept="image" name="fileImage" class="form-control-file" file-model="product.fileImage" />
+            </div>
+            <button ng-if="isAddButton" class="btn btn-success btn-clock btn-sm" type="submit" ng-click="addProduct()">{{buttonName}}</button>
+            <button ng-if="!isAddButton" class="btn btn-warning btn-clock btn-sm" type="submit" ng-click="updateProduct()">{{buttonName}}</button>
+        </form>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            <img class="img-thumbnail" src="{{product!=undentified ? product.imagePath : defaultImage}}" />
+        </div>
+    </div>
+</div>
+
+
+

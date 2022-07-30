@@ -1,0 +1,19 @@
+﻿<form action="/" method="post">
+    <input type="text" ng-model="search" class="form-control" placeholder="Search..." />
+</form>
+<a class="btn btn-success"  href="#!/add" >Add New Button</a>
+<div class="row">
+    <div class="card col-lg-3 col-xl-4" style="margin-top: 15px" ng-repeat="product in ProductList | filter:searchFilter">
+        <div class="card-header text-center">{{product.name}}</div>
+        <div class="card-body">
+            <img class="img-thumbnail" src="{{product.imagePath}}" />
+            <span>{{product.description}}</span>
+        </div>
+        <div class="card-footer btn-group btn-block">
+            <a class="btn btn-info btn-sm" href="#!/edit/{{product.id}}">Edit</a>
+            <a style="color:white" class="btn btn-danger btn-sm" ng-click="deleteProduct(product.id)">Delete</a>
+        </div>
+    </div>
+</div>
+
+{{totalPage}}

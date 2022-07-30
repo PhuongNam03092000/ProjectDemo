@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+}
+
+<html>
+    
+<head>
+    <title>Wands</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+<body ng-app="myApp">
+    <div ng-include="'app/templates/header.html'"></div>
+    <div ng-include="'app/templates/middle.html'"></div>
+    <div ng-include="'app/templates/footer.html'"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/angular-1.8.2/angular.min.js"></script>
+    <script src="~/js/angular-1.8.2/angular-route.min.js"></script>
+    <script src="~/app/script/app.module.js"></script>
+    <script src="~/app/script/app.route.js"></script>
+    <script src="~/app/script/product.controller.js"></script>
+    <script src="~/app/script/product.detail.controller.js"></script>
+    <script src="~/app/script/product.service.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>
