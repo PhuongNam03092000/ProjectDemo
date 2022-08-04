@@ -8,7 +8,6 @@
     ProductController.$inject = ['$scope', 'ProductService'];
 
     function ProductController($scope, ProductService) {
-
         var getProducts = ProductService.getProducts();
         getProducts.then(function (res) {
             $scope.ProductList = res.data;

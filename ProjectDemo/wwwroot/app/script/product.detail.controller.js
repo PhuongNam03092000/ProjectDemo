@@ -9,32 +9,38 @@
 
     function ProductDetailController($scope,$routeParams, ProductService) {
         $scope.defaultImage = "https://kare.ee/images/no-image.jpg";
-        $scope.isAddButton = true;
+        $scope.isAddForm = true;
         $scope.buttonName = "Add Product";
 
         var productId = $routeParams.id;
         if (productId !== undefined) {
             $scope.buttonName = "Update Prouduct";
-            $scope.isAddButton = false;
+            $scope.isAddForm = false;
             $scope.product = ProductService.getProduct(productId).then(function (res) {
                 $scope.product = res.data;
             });
         }
 
-        $scope.addProduct = function() {
-            ProductService.addProduct($scope.product).then(function (res) {  
-               var errors = res.data.errors;
-                if (errors == null) {
-                    document.getElementBy('myForm').reset();
-                }
-           })
+        $scope.addProduct = function () {
+            if ($scope.product != undefined) {
+                $scope.product.fileImage = $scope.file;
+                ProductService.addProduct($scope.product).then(function (res) {
+                    console.log(res);
+
+                });
+            } else if ($scope.product === undefined){
+                alert('Please fill this form');
+            }
+           
         }
 
         $scope.updateProduct = function () {
+            $scope.product.fileImage = $scope.file;
             var isConfirm = confirm("Are you sure to update this item");
             if (isConfirm) {
                 ProductService.updateProduct($scope.product).then(function (res) {
-                    window.location.href = "#!/products";
+                    console.log(res);
+                    window.location.href = "#!/";
                 });
             }     
         }

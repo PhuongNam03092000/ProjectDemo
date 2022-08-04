@@ -14,18 +14,18 @@ namespace ProjectDemo.Context.Repositories
             _context = context;
         }
 
-        public void Add(T entity)
+        public ActionStatus Add(T entity)
         {
             _context.Set<T>();
             _context.Add(entity);
-            Save();
+            return _context.SaveChanges() > 0 ? ActionStatus.Success : ActionStatus.Fail;
         }
 
-        public void Delete(T entity)
+        public ActionStatus Delete(T entity)
         {
             _context.Set<T>();
             _context.Remove(entity);
-            Save();
+            return _context.SaveChanges() > 0 ? ActionStatus.Success : ActionStatus.Fail;
         }
 
         public List<T> GetAll()
@@ -38,16 +38,11 @@ namespace ProjectDemo.Context.Repositories
             return _context.Set<T>().Find(Id);
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
-        public void Update(T entity)
+        public ActionStatus Update(T entity)
         {
             _context.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
+            return _context.SaveChanges() > 0 ? ActionStatus.Success : ActionStatus.Fail;
         }
     }
 }

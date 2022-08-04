@@ -26,8 +26,13 @@ namespace ProjectDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddCors();
             services.AddDbContext<ProductDbContext>(options 
-                => options.UseSqlServer(Configuration.GetConnectionString("Context")));
+                =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("Context"));
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            });
 
             services.AddAutoMapper(typeof(Startup).Assembly);
             var mappingConfig = new MapperConfiguration(mc =>
@@ -60,8 +65,9 @@ namespace ProjectDemo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
 
+            app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

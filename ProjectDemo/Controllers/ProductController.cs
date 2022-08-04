@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ProjectDemo.DTOs;
+using ProjectDemo.Models;
 using ProjectDemo.Services;
 using System;
 using System.Collections.Generic;
@@ -30,29 +32,46 @@ namespace ProjectDemo.Controllers
             return _service.GetById(Id);
         }
         [HttpPost]
-        public IActionResult AddProduct([FromBody] ProductDTO productDTO)
+        [Route("add")]
+        public ActionResult AddProduct([FromForm] ProductDTO productDTO)
         {
+           
             if (ModelState.IsValid)
             {
-                _service.Add(productDTO);
-                Console.WriteLine("Hello");
-                return Ok();
+                if (_service.Add(productDTO) == ActionStatus.Success)
+                    return Ok(ModelState);
+                else
+                    return BadRequest(ModelState);
             }
-            return BadRequest();
+            return BadRequest(ModelState);
 
         }
         [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int Id)
         {
-            _service.Delete(Id);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                if (_service.Delete(Id) == ActionStatus.Success)
+                    return Ok(ModelState);
+                else
+                    return BadRequest(ModelState);
+            }
+            return BadRequest(ModelState);
         }
 
         [HttpPut]
-        public IActionResult UpdateProduct([FromBody] ProductDTO productDTO)
+        public IActionResult UpdateProduct([FromForm] ProductDTO productDTO)
         {
-            _service.Update(productDTO);
-            return Ok();
+            
+            if (ModelState.IsValid)
+            {
+                if (_service.Update(productDTO)== ActionStatus.Success)
+                    return Ok(ModelState);
+                else
+                    return BadRequest(ModelState);
+            }
+            return BadRequest(ModelState);
+           
         }
     }
 }

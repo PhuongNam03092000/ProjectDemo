@@ -1,9 +1,9 @@
 ﻿<form action="/" method="post">
     <input type="text" ng-model="search" class="form-control" placeholder="Search..." />
 </form>
-<a class="btn btn-success"  href="#!/add" >Add New Button</a>
-<div class="row">
-    <div class="card col-lg-3 col-xl-4" style="margin-top: 15px" ng-repeat="product in ProductList | filter:searchFilter">
+<a class="btn btn-success" href="#!/add">Add New Button</a>
+<div class="row" style="margin-bottom:15px">
+    <div class="card col-lg-3 col-xl-4" style="margin-top: 15px" dir-paginate="product in ProductList | filter:searchFilter | itemsPerPage:6">
         <div class="card-header text-center">{{product.name}}</div>
         <div class="card-body">
             <img class="img-thumbnail" src="{{product.imagePath}}" />
@@ -15,5 +15,6 @@
         </div>
     </div>
 </div>
+<dir-pagination-controls></dir-pagination-controls>
 
-{{totalPage}}
+

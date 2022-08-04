@@ -1,9 +1,9 @@
 ﻿<div class="row">
     <div class="col-sm-9">
-        <form id="myForm" class="form" enctype='multipart/form-data'>
-            <div ng-if="!isAddButton" class="form-group">
+        <form id="myForm" name="myForm" class="form">
+            <div ng-if="!isAddForm" class="form-group">
                 <label for="name">Id</label>
-                <input type="text" name="name" value="" class="form-control" ng-model="product.id" readonly />
+                <input type="text" name="id" value="" class="form-control" ng-model="product.id" readonly />
             </div>
             <div class="form-group">
                 <label for="name">Product Name</label>
@@ -17,18 +17,20 @@
             </div>
             <div class="form-group">
                 <label for="image">Product Image</label>
-                <input type="file" accept="image" name="fileImage" class="form-control-file" file-model="product.fileImage" />
+                <input type="file" accept="image" name="fileImage" class="form-control-file" file-model="file" >
             </div>
-            <button ng-if="isAddButton" class="btn btn-success btn-clock btn-sm" type="submit" ng-click="addProduct()">{{buttonName}}</button>
-            <button ng-if="!isAddButton" class="btn btn-warning btn-clock btn-sm" type="submit" ng-click="updateProduct()">{{buttonName}}</button>
+            <button ng-if="isAddForm" class="btn btn-success btn-clock btn-sm" type="submit" ng-click="addProduct()">{{buttonName}}</button>
+            <button ng-if="!isAddForm" class="btn btn-warning btn-clock btn-sm" type="submit" ng-click="updateProduct()">{{buttonName}}</button>
         </form>
     </div>
     <div class="col-sm-3">
         <div>
-            <img class="img-thumbnail" src="{{product!=undentified ? product.imagePath : defaultImage}}" />
+            <img id="myFile" class="img-thumbnail" src="{{isAddForm? defaultImage : product.imagePath}}" />
         </div>
     </div>
 </div>
+
+
 
 
 

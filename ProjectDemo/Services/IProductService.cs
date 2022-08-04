@@ -1,4 +1,5 @@
 ﻿using ProjectDemo.DTOs;
+using ProjectDemo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,9 @@ namespace ProjectDemo.Services
     {
         List<ProductDTO> GetAll();
         ProductDTO GetById(int Id);
-        void Add(ProductDTO productDTO);
-        void Delete(int Id);
-        void Update(ProductDTO productDTO);
+        ActionStatus Add(ProductDTO productDTO);
+        ActionStatus Delete(int Id);
+        ActionStatus Update(ProductDTO productDTO);
+        void UploadFile(ref ProductDTO productDTO);
     }
 }
