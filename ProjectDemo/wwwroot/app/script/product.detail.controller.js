@@ -25,8 +25,6 @@
             if ($scope.product != undefined) {
                 $scope.product.fileImage = $scope.file;
                 ProductService.addProduct($scope.product).then(function (res) {
-                    console.log(res);
-
                 });
             } else if ($scope.product === undefined){
                 alert('Please fill this form');

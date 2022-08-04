@@ -9,7 +9,6 @@ namespace ProjectDemo.DTOs
     public class ProductDTO
     {
         public int Id { get; set; }
-        [MaxLength(5)]
         [Required(ErrorMessage = "Name is required")]
         [JsonProperty("name")]
         public string Name { get; set; }

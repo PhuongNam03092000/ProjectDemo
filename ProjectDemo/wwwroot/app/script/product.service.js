@@ -36,6 +36,7 @@
                     'Content-Type': undefined
                 }
             }).then(function (res) {
+                document.getElementById('myForm').reset();
                 deferred.resolve(res);
             }, function (err) {
                 deferred.resolve(err);
